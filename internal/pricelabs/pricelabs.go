@@ -94,6 +94,9 @@ func (c *Client) GetPriceLabs(api_key string, listing_id string, pms string) (*P
 	foo2 := PriceLabs{}
 
 	body, err := ioutil.ReadAll(res.Body)
-	json.Unmarshal([]byte(trimLastChar(string(body))), &foo2)
+	if err := json.Unmarshal([]byte(trimLastChar(string(body))), &foo2); err != nil {
+		fmt.Println(err)
+		return &foo2, err
+	}
 	return &foo2, err
 }
