@@ -1,0 +1,18 @@
+kind: source
+spec:
+  name: test
+  registry: local
+  path: /Users/sunilghosal/Documents/cq-plugin/cq-source-test/cq-source-test
+  version: v1.0.0
+  tables: ["*"]
+  destinations: ["postgresql"]
+  spec:
+---
+kind: destination
+spec:
+  name: "postgresql"
+  registry: "github"
+  path: "cloudquery/postgresql"
+  version: "v4.2.2"
+  spec:
+    connection_string: "postgresql://postgres:postgres@localhost:5430/postgres?sslmode=disable"

@@ -17,7 +17,7 @@ func Plugin() *source.Plugin {
 		"sunil-test",
 		Version,
 		schema.Tables{
-			resources.SampleTable(),
+			resources.ListingsTable(),
 		},
 		client.New,
 	)

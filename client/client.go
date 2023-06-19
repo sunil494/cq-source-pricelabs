@@ -8,26 +8,32 @@ import (
 	"github.com/cloudquery/plugin-sdk/v3/plugins/source"
 	"github.com/cloudquery/plugin-sdk/v3/schema"
 	"github.com/rs/zerolog"
+	"github.com/sunil494/cq-source-test/internal/pricelabs"
 )
 
 type Client struct {
-	Logger zerolog.Logger
+	Logger    zerolog.Logger
+	PriceLabs *pricelabs.Client
 }
 
 func (c *Client) ID() string {
-	// TODO: Change to either your plugin name or a unique dynamic identifier
-	return "ID"
+	return "pricelabs"
 }
 
-func New(ctx context.Context, logger zerolog.Logger, s specs.Source, opts source.Options) (schema.ClientMeta, error) {
+func New(_ context.Context, logger zerolog.Logger, s specs.Source, _ source.Options) (schema.ClientMeta, error) {
 	var pluginSpec Spec
 
 	if err := s.UnmarshalSpec(&pluginSpec); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal plugin spec: %w", err)
 	}
-	// TODO: Add your client initialization here
+
+	c, err := pricelabs.NewClient()
+	if err != nil {
+		return nil, err
+	}
 
 	return &Client{
-		Logger: logger,
+		Logger:    logger,
+		PriceLabs: c,
 	}, nil
 }
