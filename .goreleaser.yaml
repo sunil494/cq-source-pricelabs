@@ -33,5 +33,4 @@ changelog:
 
 release:
   prerelease: auto
-  permissions:
-    contents: write
+  permissions: write-all
