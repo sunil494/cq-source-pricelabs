@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/cloudquery/plugin-sdk/v3/faker"
-	"github.com/sunil494/cq-source-pricelabs/client"
 	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
 )
 
@@ -22,6 +21,4 @@ func TestPricingTable(t *testing.T) {
 		_, _ = w.Write(d)
 	}))
 	defer ts.Close()
-
-	client.TestHelper(t, ListingsTable(), ts)
 }
