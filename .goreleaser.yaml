@@ -33,3 +33,5 @@ changelog:
 
 release:
   prerelease: auto
+  permissions:
+    contents: write
