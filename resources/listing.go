@@ -5,8 +5,8 @@ import (
 
 	"github.com/cloudquery/plugin-sdk/v3/schema"
 	"github.com/cloudquery/plugin-sdk/v3/transformers"
-	"github.com/sunil494/cq-source-test/client"
-	"github.com/sunil494/cq-source-test/internal/pricelabs"
+	"github.com/sunil494/cq-source-pricelabs/client"
+	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
 	"golang.org/x/sync/errgroup"
 )
 

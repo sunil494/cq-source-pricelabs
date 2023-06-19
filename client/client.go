@@ -8,7 +8,7 @@ import (
 	"github.com/cloudquery/plugin-sdk/v3/plugins/source"
 	"github.com/cloudquery/plugin-sdk/v3/schema"
 	"github.com/rs/zerolog"
-	"github.com/sunil494/cq-source-test/internal/pricelabs"
+	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
 )
 
 type Client struct {

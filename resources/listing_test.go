@@ -7,12 +7,12 @@ import (
 	"testing"
 
 	"github.com/cloudquery/plugin-sdk/v3/faker"
-	"github.com/sunil494/cq-source-test/client"
-	"github.com/sunil494/cq-source-test/internal/xkcd"
+	"github.com/sunil494/cq-source-pricelabs/client"
+	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
 )
 
 func TestListingsTable(t *testing.T) {
-	var comic xkcd.PriceLabs
+	var comic pricelabs.PriceLabs
 	if err := faker.FakeObject(&comic); err != nil {
 		t.Fatal(err)
 	}

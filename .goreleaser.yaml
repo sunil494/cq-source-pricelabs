@@ -8,7 +8,7 @@ builds:
       - CGO_ENABLED=0
       - GO111MODULE=on
     ldflags:
-      - -s -w -X github.com/sunil/cq-source-test/plugin.Version={{.Version}}
+      - -s -w -X github.com/sunil/cq-source-pricelabs/plugin.Version={{.Version}}
     goos:
       - windows
       - linux

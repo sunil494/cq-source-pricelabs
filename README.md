@@ -1,7 +1,7 @@
 # CloudQuery test Source Plugin
 
-[![test](https://github.com/sunil/cq-source-test/actions/workflows/test.yaml/badge.svg)](https://github.com/sunil/cq-source-test/actions/workflows/test.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sunil/cq-source-test)](https://goreportcard.com/report/github.com/sunil/cq-source-test)
+[![test](https://github.com/sunil/cq-source-pricelabs/actions/workflows/test.yaml/badge.svg)](https://github.com/sunil/cq-source-pricelabs/actions/workflows/test.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sunil/cq-source-pricelabs)](https://goreportcard.com/report/github.com/sunil/cq-source-pricelabs)
 
 A test source plugin for CloudQuery that loads data from test to any database, data warehouse or data lake supported by [CloudQuery](https://www.cloudquery.io/), such as PostgreSQL, BigQuery, Athena, and many more.
 
