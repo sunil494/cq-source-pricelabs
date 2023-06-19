@@ -1,4 +1,4 @@
-module github.com/sunil/cq-source-test
+module github.com/sunil494/cq-source-test
 
 go 1.19
 

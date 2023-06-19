@@ -1,8 +1,8 @@
 package plugin
 
 import (
-	"github.com/sunil/cq-source-test/client"
-	"github.com/sunil/cq-source-test/resources"
+	"github.com/sunil494/cq-source-test/client"
+	"github.com/sunil494/cq-source-test/resources"
 
 	"github.com/cloudquery/plugin-sdk/v3/plugins/source"
 	"github.com/cloudquery/plugin-sdk/v3/schema"

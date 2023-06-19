@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/sunil/cq-source-test/plugin"
+	"github.com/sunil494/cq-source-test/plugin"
 
 	"github.com/cloudquery/plugin-sdk/v3/serve"
 )

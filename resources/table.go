@@ -5,6 +5,7 @@ import (
 
 	"github.com/cloudquery/plugin-sdk/schema"
 	"github.com/cloudquery/plugin-sdk/v2/transformers"
+	"github.com/sunil494/cq-source-test/internal/xkcd"
 )
 
 type Comic struct {
@@ -25,7 +26,7 @@ func Comics() *schema.Table {
 	return &schema.Table{
 		Name:      "xkcd_comics",
 		Resolver:  fetchComics,
-		Transform: transformers.TransformWithStruct(Comic{}),
+		Transform: transformers.TransformWithStruct(&xkcd.Comic{}),
 	}
 }
 
