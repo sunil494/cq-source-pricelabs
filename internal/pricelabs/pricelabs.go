@@ -1,4 +1,4 @@
-package xkcd
+package pricelabs
 
 import (
 	"encoding/json"
@@ -12,10 +12,16 @@ import (
 const defaultURL = "https://api.pricelabs.co/v1/listing_prices"
 
 type PriceLabs struct {
-	Id                string `json:"Id"`
-	Pms               string `json:"pms"`
-	Currency          string `json:"currency"`
-	Last_refreshed_at string `json:"last_refreshed_at"`
+	Id                string             `json:"Id"`
+	Pms               string             `json:"pms"`
+	Currency          string             `json:"currency"`
+	Last_refreshed_at string             `json:"last_refreshed_at"`
+	Data              []PriceLabsPricing `json:"data"`
+}
+
+type PriceLabsPricing struct {
+	Date  string `json:"date"`
+	Price int    `json:"price"`
 }
 
 type Client struct {
@@ -56,7 +62,7 @@ func trimLastChar(s string) string {
 	return s[1 : len(s)-size]
 }
 
-func (c *Client) GetPriceLabs(num int) (*PriceLabs, error) {
+func (c *Client) GetPriceLabs(api_key string, listing_id string, pms string) (*PriceLabs, error) {
 
 	url := "https://api.pricelabs.co/v1/listing_prices"
 	method := "POST"
@@ -64,8 +70,8 @@ func (c *Client) GetPriceLabs(num int) (*PriceLabs, error) {
 	payload := strings.NewReader(`{
     "listings": [
         {
-        "id": "300002892",
-        "pms": "hostify"
+        "id": "` + listing_id + `",
+        "pms": "` + pms + `"
         }
     ]
     }`)
@@ -76,7 +82,7 @@ func (c *Client) GetPriceLabs(num int) (*PriceLabs, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	req.Header.Add("x-api-key")
+	req.Header.Add("x-api-key", api_key)
 	req.Header.Add("Content-Type", "application/json")
 
 	res, err := client.Do(req)

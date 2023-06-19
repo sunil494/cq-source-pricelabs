@@ -23,7 +23,7 @@ func ListingsTable() *schema.Table {
 
 func fetchPriceLabs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- interface{}) error {
 	c := meta.(*client.Client)
-	listings, err := c.PriceLabs.GetPriceLabs(0)
+	listings, err := c.PriceLabs.GetPriceLabs(c.Spec.ApiKey)
 	if err != nil {
 		return err
 	}

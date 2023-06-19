@@ -14,6 +14,7 @@ import (
 type Client struct {
 	Logger    zerolog.Logger
 	PriceLabs *pricelabs.Client
+	Spec      *Spec
 }
 
 func (c *Client) ID() string {
@@ -35,5 +36,6 @@ func New(_ context.Context, logger zerolog.Logger, s specs.Source, _ source.Opti
 	return &Client{
 		Logger:    logger,
 		PriceLabs: c,
+		Spec:      &pluginSpec,
 	}, nil
 }

@@ -14,7 +14,7 @@ var (
 
 func Plugin() *source.Plugin {
 	return source.NewPlugin(
-		"sunil-test",
+		"PriceLabs",
 		Version,
 		schema.Tables{
 			resources.ListingsTable(),

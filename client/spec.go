@@ -1,5 +1,7 @@
 package client
 
 type Spec struct {
-	// plugin spec goes here
+	Id     string `json:"id"`
+	Pms    string `json:"pms"`
+	ApiKey string `json:"api key"`
 }
