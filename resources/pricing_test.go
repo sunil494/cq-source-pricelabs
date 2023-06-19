@@ -11,7 +11,7 @@ import (
 	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
 )
 
-func TestListingsTable(t *testing.T) {
+func TestPricingTable(t *testing.T) {
 	var comic pricelabs.PriceLabs
 	if err := faker.FakeObject(&comic); err != nil {
 		t.Fatal(err)
