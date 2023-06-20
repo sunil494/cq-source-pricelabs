@@ -14,7 +14,7 @@ func ListingsTable() *schema.Table {
 	return &schema.Table{
 		Name:      "pricelabs_listings",
 		Resolver:  fetchPriceLabs,
-		Transform: transformers.TransformWithStruct(&pricelabs.PriceLabs{}),
+		Transform: transformers.TransformWithStruct(&pricelabs.PriceLabsListing{}),
 		Relations: []*schema.Table{
 			PricingTable(),
 		},

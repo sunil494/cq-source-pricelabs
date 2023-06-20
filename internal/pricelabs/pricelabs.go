@@ -19,6 +19,13 @@ type PriceLabs struct {
 	Data              []PriceLabsPricing `json:"data"`
 }
 
+type PriceLabsListing struct {
+	Id                string `json:"Id"`
+	Pms               string `json:"pms"`
+	Currency          string `json:"currency"`
+	Last_refreshed_at string `json:"last_refreshed_at"`
+}
+
 type PriceLabsPricing struct {
 	Date  string `json:"date"`
 	Price int    `json:"price"`
