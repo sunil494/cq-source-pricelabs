@@ -2,12 +2,12 @@ package resources
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/cloudquery/plugin-sdk/v3/schema"
 	"github.com/cloudquery/plugin-sdk/v3/transformers"
 	"github.com/sunil494/cq-source-pricelabs/client"
 	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
-	"golang.org/x/sync/errgroup"
 )
 
 func ListingsTable() *schema.Table {
@@ -23,12 +23,13 @@ func ListingsTable() *schema.Table {
 
 func fetchPriceLabs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- interface{}) error {
 	c := meta.(*client.Client)
-	listings, err := c.PriceLabs.GetPriceLabs(c.Spec.ApiKey, c.Spec.Id, c.Spec.Pms)
-	if err != nil {
-		return err
+	for _, listing := range c.Spec.Listings {
+		listings, err := c.PriceLabs.GetPriceLabs(listing.API_KEY, listing.ID, listing.PMS)
+		fmt.Printf("%+v\n", listings)
+		if err != nil {
+			return err
+		}
+		res <- listings
 	}
-	res <- listings
-	g := errgroup.Group{}
-	g.SetLimit(10)
-	return g.Wait()
+	return nil
 }

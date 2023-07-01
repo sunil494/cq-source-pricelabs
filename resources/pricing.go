@@ -7,7 +7,6 @@ import (
 	"github.com/cloudquery/plugin-sdk/v3/transformers"
 	"github.com/sunil494/cq-source-pricelabs/client"
 	"github.com/sunil494/cq-source-pricelabs/internal/pricelabs"
-	"golang.org/x/sync/errgroup"
 )
 
 func PricingTable() *schema.Table {
@@ -20,14 +19,14 @@ func PricingTable() *schema.Table {
 
 func fetchPriceLabsData(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- interface{}) error {
 	c := meta.(*client.Client)
-	pricing, err := c.PriceLabs.GetPriceLabs(c.Spec.ApiKey, c.Spec.Id, c.Spec.Pms)
-	if err != nil {
-		return err
+	for _, listing := range c.Spec.Listings {
+		pricing, err := c.PriceLabs.GetPriceLabs(listing.API_KEY, listing.ID, listing.PMS)
+		if err != nil {
+			return err
+		}
+		for _, price := range pricing.Data {
+			res <- price
+		}
 	}
-	for _, price := range pricing.Data {
-		res <- price
-	}
-	g := errgroup.Group{}
-	g.SetLimit(10)
-	return g.Wait()
+	return nil
 }

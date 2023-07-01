@@ -1,7 +1,11 @@
 package client
 
+type Listing struct {
+	ID      string `json:"id"`
+	PMS     string `json:"pms"`
+	API_KEY string `json:"api_key"`
+}
+
 type Spec struct {
-	Id     string `json:"id"`
-	Pms    string `json:"pms"`
-	ApiKey string `json:"api key"`
+	Listings []Listing `json:"listings"`
 }
