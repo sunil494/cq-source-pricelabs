@@ -7,7 +7,7 @@ import (
 func ListingMultiplex(meta schema.ClientMeta) []schema.ClientMeta {
 	var l = make([]schema.ClientMeta, 0)
 	client := meta.(*Client)
-	for index, _ := range client.Spec.Listings {
+	for index := range client.Spec.Listings {
 		l = append(l, client.WithListing(client.Spec.Listings[index]))
 	}
 	return l
