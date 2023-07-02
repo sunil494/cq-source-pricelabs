@@ -15,10 +15,19 @@ type Client struct {
 	Logger    zerolog.Logger
 	PriceLabs *pricelabs.Client
 	Spec      *Spec
+
+	Listing PriceLabsConfigBlock
 }
 
 func (c *Client) ID() string {
-	return "pricelabs"
+	return fmt.Sprintf("pricelabs:%s", c.Listing.NAME)
+}
+
+func (c *Client) WithListing(listing PriceLabsConfigBlock) *Client {
+	newC := *c
+	newC.Logger = c.Logger.With().Str("listing", listing.NAME).Logger()
+	newC.Listing = listing
+	return &newC
 }
 
 func New(_ context.Context, logger zerolog.Logger, s specs.Source, _ source.Options) (schema.ClientMeta, error) {

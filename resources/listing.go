@@ -15,6 +15,7 @@ func ListingsTable() *schema.Table {
 		Name:      "pricelabs_listings",
 		Resolver:  fetchPriceLabs,
 		Transform: transformers.TransformWithStruct(&pricelabs.PriceLabsListing{}),
+		Multiplex: client.ListingMultiplex,
 		Relations: []*schema.Table{
 			PricingTable(),
 		},
@@ -23,13 +24,13 @@ func ListingsTable() *schema.Table {
 
 func fetchPriceLabs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- interface{}) error {
 	c := meta.(*client.Client)
-	for _, listing := range c.Spec.Listings {
-		listings, err := c.PriceLabs.GetPriceLabs(listing.API_KEY, listing.ID, listing.PMS)
-		fmt.Printf("%+v\n", listings)
-		if err != nil {
-			return err
-		}
-		res <- listings
+	listing := c.Listing
+	listings, err := c.PriceLabs.GetPriceLabs(listing.API_KEY, listing.ID, listing.PMS)
+	listings.Name = listing.NAME
+	fmt.Printf("%+v\n", listing.NAME)
+	if err != nil {
+		return err
 	}
+	res <- listings
 	return nil
 }

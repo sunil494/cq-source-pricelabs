@@ -1,12 +1,14 @@
 package client
 
-import "github.com/cloudquery/plugin-sdk/v3/schema"
+import (
+	"github.com/cloudquery/plugin-sdk/v3/schema"
+)
 
-func BackendMultiplex(meta schema.ClientMeta) []schema.ClientMeta {
+func ListingMultiplex(meta schema.ClientMeta) []schema.ClientMeta {
 	var l = make([]schema.ClientMeta, 0)
 	client := meta.(*Client)
-	for name := range client.Backends {
-		l = append(l, client.withSpecificBackend(name))
+	for index, _ := range client.Spec.Listings {
+		l = append(l, client.WithListing(client.Spec.Listings[index]))
 	}
 	return l
 }

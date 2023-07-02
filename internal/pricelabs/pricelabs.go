@@ -16,6 +16,7 @@ type PriceLabs struct {
 	Pms               string             `json:"pms"`
 	Currency          string             `json:"currency"`
 	Last_refreshed_at string             `json:"last_refreshed_at"`
+	Name              string             `json:"name"`
 	Data              []PriceLabsPricing `json:"data"`
 }
 
@@ -23,6 +24,7 @@ type PriceLabsListing struct {
 	Id                string `json:"Id"`
 	Pms               string `json:"pms"`
 	Currency          string `json:"currency"`
+	Name              string `json:"name"`
 	Last_refreshed_at string `json:"last_refreshed_at"`
 }
 
